@@ -14,7 +14,7 @@ import controller
 def main():
     url_map = [
         (r'/', controller.MainHandler),
-        (r'/submit', controller.EntryHandler),
+        (r'/submit', controller.PostNew),
         (r'/([a-f\d]{32})', controller.MainHandler),
         (r'/login', controller.UserLogin),
         (r'/logout', controller.UserLogout),

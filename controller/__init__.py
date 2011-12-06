@@ -1,5 +1,5 @@
 from mainhandler import MainHandler
-from entryhandler import EntryHandler
+from post import PostNew
 from gtfo import GTFO
 from user import *
 from admin import *
