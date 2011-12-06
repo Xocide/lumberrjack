@@ -1,0 +1,31 @@
+{% extends '../layouts/default.html' %}
+{% block content %}
+<style>
+	.admin_actions {
+		float: right;
+	}
+</style>
+<div class="box">
+	<h2>Posts</h2>
+	{% for post in posts %}
+	<article class="box post">
+		<div class="admin_actions">
+			<form action="/admin.php" method="post">
+				<input type="hidden" name="post_id" value="{{ post.unique_hash }}" />
+				{% if not post.published %}
+				<input type="submit" name="approve" value="Approve" />
+				{% endif %}
+				<input type="submit" name="delete" value="Delete" />
+			</form>
+		</div>
+		<div class="meta">{{ post.author_name }}'s <a href="{{ post.url }}">{{ post.type }}</a></div>
+		{% if post.title %}
+		<h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+		{% endif %}
+		<p>
+			{{ post.content }}
+		</p>
+	</article>
+	{% endfor %}
+</div>
+{% endblock %}

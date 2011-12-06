@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>{% block title %}Lumberrjack{% endblock %}</title>
+		<link rel="stylesheet" href="/css/reset.css" />
+		<link rel="stylesheet" href="/css/grid.css" />
+		<link rel="stylesheet" href="/css/lumberrjack.css" />
+	</head>
+	<body>
+		<div id="top">
+			<header class="container_16">
+					<h1 class="grid_3">Lumberrjack</h1>
+					<span class="grid_1">Stupid posts by stupid Forrst users.</span>
+					<nav class="grid_5 prefix_4">
+						<ul>
+							<li><a href="/">All Posts</a></li>
+							<li><a href="/submit">Submit Post</a></li>
+							{% if user %}
+							{% if current_user.is_admin %}
+							<li><a href="/admin.php">Admin</a></li>
+							{% endif %}
+							<li><a href="/logout">Logout</a></li>
+							{% endif %}
+						</ul>
+					</nav>
+			</header>
+		</div>
+		<div id="page" class="container_16">
+			{% block content %}{% endblock %}
+		</div>
+		<footer class="container_16">
+			
+		</footer>
+	</body>
+</html>
