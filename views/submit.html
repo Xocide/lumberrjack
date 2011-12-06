@@ -1,0 +1,50 @@
+{% extends 'layouts/default.html' %}
+{% block content %}
+<div id="new_entry" class="box">
+	<form action="/submit" method="post" class="prefix_4">
+		<h2>New Post</h2>
+		{% if errors %}
+			<div class="error">
+				<ul>
+				{% for error in errors %}
+					<li>{{ error }}</li>
+				{% endfor %}
+				</ul>
+			</div>
+		{% endif %}
+		{% if test_var %}
+			<h2>FUCK</h2>
+		{% endif %}
+		<div class="group">
+			<label>Type</label>
+			<select name="type">
+				<option value="">Select</option>
+				<option value="link">Link</option>
+				<option value="snap">Snap</option>
+				<option value="code">Code</option>
+				<option value="question">Question</option>
+				<option value="comment">Comment</option>
+			</select>
+		</div>
+		<div class="group">
+			<label>Posters Username</label>
+			<input type="text" name="author" value="{{ data.author }}" required="required" />
+		</div>
+		<div class="group">
+			<label>Post Title</label>
+			<input type="text" name="title" value="{{ data.title }}" required="required" /> <small>If applicable</small>
+		</div>
+		<div class="group">
+			<label>Post URL</label>
+			<input type="text" name="url" value="{{ data.url }}" required="required" />
+		</div>
+		<div class="group">
+			<label>Post Content</label>
+			<textarea name="content" required="required">{{ data.content }}</textarea>
+		</div>
+		<div class="group">
+			<input type="submit" value="Submit" class="button" />
+		</div>
+	</form>
+</div>
+{% endblock %}

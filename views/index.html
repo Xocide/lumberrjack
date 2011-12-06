@@ -1,0 +1,14 @@
+{% extends 'layouts/default.html' %}
+{% block content %}
+	{% for post in posts %}
+	<article class="box post">
+		<div class="meta">{{ post.author_name }}'s {{ post.type }}</div>
+		{% if post.title %}
+		<h2>{{ post.title }}</h2>
+		{% endif %}
+		<p>
+			{{ post.content }}
+		</p>
+	</article>
+	{% endfor %}
+{% endblock %}
