@@ -1,4 +1,5 @@
-import model, libs, cgi, hashlib, json
+import model, libs, cgi, hashlib
+from django.utils import simplejson as json
 from google.appengine.ext import db
 from datetime import datetime
 from base import *
