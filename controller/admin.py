@@ -4,6 +4,7 @@ class AdminDashboard(Base):
     def get(self):
         if not self.current_user['is_admin']:
             self.redirect('/gtfo')
+            return
         
         posts = model.PostDB.all().order('-created') #gql("WHERE published = 0 ORDER BY created DESC")
         self.render('admin/dashboard', {'cu': self.current_user, 'posts': posts})
@@ -11,6 +12,7 @@ class AdminDashboard(Base):
     def post(self):
         if not self.current_user['is_admin']:
             self.redirect('/gtfo')
+            return
         
         post = model.PostDB.get_by_key_name(self.param("post_id"))
         
