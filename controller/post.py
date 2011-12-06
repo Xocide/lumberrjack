@@ -16,28 +16,32 @@ class PostNew(Base):
         url_bits = self.param("url").split('-')
         tiny_id = url_bits[len(url_bits)-1]
         
-        post = fapi.posts_show(tiny_id=tiny_id)
+        try:
+            post = fapi.posts_show(tiny_id=tiny_id)
+        except: post = None
         
-        data = {
-            'type': post['post_type'],
-            'title': post['title'],
-            'url': post['post_url'],
-            'post_id': post['id'],
-            'tiny_id': post['tiny_id'],
-            'f_created_at': post['created_at'],
-            'f_updated_at': post['updated_at'],
-            'content': post['content'],
-            'author_name': post['user']['name'],
-            'author_username': post['user']['username'],
-            'author_url': post['user']['url'],
-            'description': post['description'],
-            'formatted_description': post['formatted_description'],
-            'snaps': json.dumps(post['snaps'])
-        }
+        if post:
+            data = {
+                'type': post['post_type'],
+                'title': post['title'],
+                'url': post['post_url'],
+                'post_id': post['id'],
+                'tiny_id': post['tiny_id'],
+                'f_created_at': post['created_at'],
+                'f_updated_at': post['updated_at'],
+                'content': post['content'],
+                'author_name': post['user']['name'],
+                'author_username': post['user']['username'],
+                'author_url': post['user']['url'],
+                'description': post['description'],
+                'formatted_description': post['formatted_description'],
+                'snaps': json.dumps(post['snaps'])
+            }
+            post = model.PostDB.get_by_key_name(data['tiny_id'])
+        else:
+            data = None
         
-        post = model.PostDB.get_by_key_name(data['tiny_id'])
-        
-        if not post:
+        if data and data['url'] and not post:
             post = model.PostDB(
                 key_name = tiny_id,
                 type = data['type'],
@@ -57,6 +61,10 @@ class PostNew(Base):
                 published = 0
             )
             post.put()
-            self.render('thanks') #, {'fucker': post})
+            self.render('thanks')
         else:
-            self.render('submit', {'exists': True})
+            if post:
+                error = 'exists'
+            elif not data:
+                error = 'invalid'
+            self.render('submit', {'error': error})

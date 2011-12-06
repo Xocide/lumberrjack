@@ -3,11 +3,16 @@
 <div id="new_entry" class="box">
 	<form action="/submit" method="post" class="prefix_4">
 		<h2>New Post</h2>
-		{% if exists %}
-			<div class="error">
-				Are you daft? this has already been submitted.
-			</div>
-		{% endif %}
+		{% ifequal error "exists" %}
+		<div class="error">
+			Are you daft? this has already been submitted.
+		</div>
+		{% endifequal %}
+		{% ifequal error "invalid" %}
+		<div class="error">
+			Invalid URL
+		</div>
+		{% endifequal %}
 		<div class="group">
 			<label>Post URL</label>
 			<input type="text" name="url" required="required" /> <input type="submit" value="Submit" />
