@@ -72,9 +72,6 @@ class PostNew(Base):
         if post:
             error = 'Are you daft? thats already been submitted'
         
-        #self.render('fuckit', {'fucker': post})
-        #return
-        
         if not error:
             post = model.PostDB(
                 key_name = tiny_id,
