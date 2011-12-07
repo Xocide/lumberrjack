@@ -55,6 +55,10 @@ a {
 	width: 130px;
 }
 
+#top header h1 a {
+	color: #fff;
+}
+
 #top header span {
 	font-size: 12px;
 	margin-top: 18px;
