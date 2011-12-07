@@ -6,7 +6,7 @@
 body {
 	background: url('/images/bg.png');
 	font-family: 'Helvetica Neue', Helvetica, Verdana, Arial, sans-serif;
-	line-height: 1;
+	line-height: 1.45;
 }
 
 small {
@@ -50,7 +50,7 @@ a {
 #top header h1 {
 	font-size: 22px;
 	font-weight: bold;
-	margin-top: 18px;
+	margin-top: 14px;
 	text-shadow: 1px 1px #000;
 	width: 130px;
 }
@@ -61,15 +61,14 @@ a {
 
 #top header span {
 	font-size: 12px;
-	margin-top: 18px;
+	margin-top: 12px;
 	width: 120px;
 	text-align: center;
 }
 
 #top header nav {
 	float: right;
-	margin-top: 20px;
-	width: 400px;
+	margin-top: 18px;
 	text-align: right;
 }
 
@@ -133,7 +132,7 @@ form .group {
 ###############
 */
 .box {
-	padding: 10px;
+	padding: 15px;
 	background: #f7f7f7;
 	border: 1px solid #fff;
 	border-radius: 5px;
@@ -146,5 +145,5 @@ form .group {
 
 .post .meta {
 	font-size: 12px;
-	margin-bottom: 4px;
+	color: #99999D;
 }
