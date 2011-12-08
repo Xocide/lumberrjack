@@ -14,8 +14,7 @@ import controller
 def main():
     url_map = [
         (r'/', controller.MainHandler),
-        (r'/submit', controller.PostNew),
-        (r'/gtfo', controller.GTFO)
+        (r'/submit', controller.PostNew)
     ]
     
     application = webapp.WSGIApplication(url_map, debug=True)
