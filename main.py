@@ -15,10 +15,6 @@ def main():
     url_map = [
         (r'/', controller.MainHandler),
         (r'/submit', controller.PostNew),
-        (r'/([a-f\d]{32})', controller.MainHandler),
-        (r'/login', controller.UserLogin),
-        (r'/logout', controller.UserLogout),
-        (r'/admin.php', controller.AdminDashboard),
         (r'/gtfo', controller.GTFO)
     ]
     

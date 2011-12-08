@@ -1,5 +1,4 @@
 import os
-from google.appengine.api import users
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 import model
@@ -16,26 +15,7 @@ class Base(webapp.RequestHandler):
     current_user = {'is_admin': 0}
 
     def __init__(self):
-        self.set('user', self.user())
-        if self.user():
-            # Check if they've visited before...
-            user = model.UserDB.get_by_key_name(self.user().user_id())
-            if not user:
-                user = model.UserDB(
-                    key_name = self.user().user_id(),
-                    user_id = self.user().user_id(),
-                    email = self.user().email(),
-                    is_admin = 0
-                )
-                user.put()
-            
-            self.current_user = {
-                'nickname': self.user().nickname(),
-                'email': self.user().email(),
-                'id': self.user().user_id(),
-                'is_admin': user.is_admin
-            }
-            self.set('current_user', self.current_user)
+        self.set('current_user', self.current_user)
 
     def set(self, arg, val):
         self.view_data[arg] = val
@@ -48,7 +28,4 @@ class Base(webapp.RequestHandler):
         return self.request.get(arg, default)
     
     def user(self):
-        if users.get_current_user():
-            return users.get_current_user()
-        else:
-            return None
+        return None
